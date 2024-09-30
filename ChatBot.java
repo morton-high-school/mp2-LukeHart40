@@ -16,16 +16,22 @@ public class ChatBot{
   public String getResponse(String statement){
     String response = "";
     String length = statement.trim();
-    if(length.substring(0,1)==""){
-      response = "Please enter something I can respond to man!";
-    }else if(statement.indexOf("no")>=0){
+    if(statement.indexOf("no")>=0){
       response = "Why so negative?";
-    }else if(statement.indexOf("mother")>0 ||  statement.indexOf("father")>0 || statement.indexOf("sister")>0 || statement.indexOf("brother")>0){
+    }else if(statement.findKeyWord(statement, "mother", 0)>=0 ||  statement.findKeyWord(statement, "father", 0)>=0 || statement.findKeyWord(statement, "sister", 0)>=0 || statement.indexOf("brother")>0){
       response = "Tell me more about your family.";
-    }else if(statement.indexOf("dog")>0 || statement.indexOf("cat")>0){
+    }else if(statement.indexOf("dog")>=0 || statement.indexOf("cat")>=0){
       response = "Tell me more about your pets.";
-    }else if(statement.indexOf("Zeller")>0 || statement.indexOf("zeller")>0){
+    }else if(statement.indexOf("Zeller")>=0 || statement.indexOf("zeller")>=0){
       response = "You know my creator? Awesome!";
+    }else if(statement.indexOf("AI")>=0 || statement.indexOf("ai")>=0){
+      response = "My rue is up!";
+    }else if(statement.indexOf("band")>=0){
+      response = "OOO, what is your favorite band? Tell me more!";
+    }else if(statement.indexOf("binary")>=0 || statement.indexOf("Binary")>=0){
+      response = "01010111 01101000 01100001 01110100 00111111";
+    }else if(length.length()==0){
+      response = "Please enter something I can respond to man!";
     }else{
       response = getRandomResponse();
     }
@@ -50,6 +56,10 @@ public class ChatBot{
       response = "Do you really think so?";
     }else if(whichResponse==3){
       response = "You don't say.";
+    }else if(whichResponse==4){
+      response = "Holy cow man!";
+    }else if(whichResponse==5){
+      response = "Why is that?";
     }
     return response;
   }
