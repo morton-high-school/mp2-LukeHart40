@@ -16,20 +16,25 @@ public class ChatBot{
   public String getResponse(String statement){
     String response = "";
     String length = statement.trim();
-    if(statement.indexOf("no")>=0){
+    int psnOfYou = findKeyword (statement, "you", 0);
+    if(findKeyword(statement, "no", 0)>=0){
       response = "Why so negative?";
-    }else if(statement.findKeyWord(statement, "mother", 0)>=0 ||  statement.findKeyWord(statement, "father", 0)>=0 || statement.findKeyWord(statement, "sister", 0)>=0 || statement.indexOf("brother")>0){
+    }else if(findKeyword(statement, "mother", 0)>=0 ||  findKeyword(statement, "father", 0)>=0 || findKeyword(statement, "sister", 0)>=0 || findKeyword(statement, "brother", 0)>0){
       response = "Tell me more about your family.";
-    }else if(statement.indexOf("dog")>=0 || statement.indexOf("cat")>=0){
+    }else if(findKeyword(statement, "dog", 0)>=0 || findKeyword(statement, "cat", 0)>=0){
       response = "Tell me more about your pets.";
-    }else if(statement.indexOf("Zeller")>=0 || statement.indexOf("zeller")>=0){
+    }else if(findKeyword(statement, "Zeller", 0)>=0 || findKeyword(statement, "zeller", 0)>=0){
       response = "You know my creator? Awesome!";
-    }else if(statement.indexOf("AI")>=0 || statement.indexOf("ai")>=0){
+    }else if(findKeyword(statement, "AI", 0)>=0 || findKeyword(statement, "ai", 0)>=0){
       response = "My rue is up!";
-    }else if(statement.indexOf("band")>=0){
+    }else if(findKeyword(statement, "band", 0)>=0){
       response = "OOO, what is your favorite band? Tell me more!";
-    }else if(statement.indexOf("binary")>=0 || statement.indexOf("Binary")>=0){
+    }else if(findKeyword(statement, "binary", 0)>=0 || findKeyword(statement, "Binary", 0)>=0){
       response = "01010111 01101000 01100001 01110100 00111111";
+    }else if(findKeyword(statement, "I want to", 0)>=0){
+      response = (transformIWantToStatement(statement));
+    }else if(findKeyword (statement, "you", 0)>=0 && findKeyword (statement, "me", psnOfYou + 3)>=0){
+      response = (transformYouMeStatement(statement));
     }else if(length.length()==0){
       response = "Please enter something I can respond to man!";
     }else{
